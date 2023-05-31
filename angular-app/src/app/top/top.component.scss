@@ -1,0 +1,53 @@
+body {
+  background-image: url("../猫背景.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 550px; /* ボタンの右側に余白を設定 */
+  margin-top: 100px; /* ボタンの上側に余白を設定 */
+}
+
+
+.quiz-button {
+  background-color: #BCFFE2;
+  color: black;
+  border-radius: 100vh; /* 丸い形状にするためにborder-radiusを調整 */
+  width: 400px; /* 幅を定 */
+  height: 100px; /* 高さを設定 */
+  justify-self: end; /* ボタンを右側に配置 */
+  margin-left: 8px; /* ボタンの左側に少し余白を設定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 24px;
+  font-family: "Hannotate SC", sans-serif;
+}
+
+.diagnosis-button {
+  background-color:#BCFFFD;
+  color: black;
+  border-radius: 100vh; /* 丸い形状にするためにborder-radiusを調整 */
+  width: 400px; /* 幅を設定 */
+  height: 100px; /* 高さを設定 */
+  justify-self: end; /* ボタンを右側に配置 */
+  margin-left: 8px; /* ボタンの左側に少し余白を設定 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 24px;
+  font-family: "Hannotate SC", sans-serif;
+}
+
+.font{
+  font-size: 20px;
+  text-align: center;
+  font-family: "Hannotate SC", sans-serif;
+}
