@@ -1,18 +1,15 @@
-body {
-  background-image: url("../猫背景.jpeg");
+.background {
+  margin:0px;
+  background-image: url("../../assets/猫背景.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 0;
 }
 
-
-.button-container {
+.quiz-button-container {
   display: flex;
-  justify-content: flex-end;
-  margin-right: 550px; /* ボタンの右側に余白を設定 */
-  margin-top: 100px; /* ボタンの上側に余白を設定 */
+    justify-content: center;
+    margin-top: 100px;
 }
-
 
 .quiz-button {
   background-color: #BCFFE2;
@@ -21,12 +18,11 @@ body {
   width: 400px; /* 幅を定 */
   height: 100px; /* 高さを設定 */
   justify-self: end; /* ボタンを右側に配置 */
-  margin-left: 8px; /* ボタンの左側に少し余白を設定 */
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 20px;
   font-family: "Hannotate SC", sans-serif;
 }
 
@@ -42,12 +38,21 @@ body {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 15px;
   font-family: "Hannotate SC", sans-serif;
 }
 
-.font{
+.subtitle-font{
   font-size: 20px;
   text-align: center;
   font-family: "Hannotate SC", sans-serif;
+  margin: 0;
+}
+
+.diagnosis-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 100px;
+  justify-content: center;
+
 }
