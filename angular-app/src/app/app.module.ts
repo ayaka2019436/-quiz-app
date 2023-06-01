@@ -6,11 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopComponent } from './top/top.component';
-import { ToolberComponent } from './toolber/toolber.component';
+import { TopComponent } from './pages/top/top.component';
+import { ToolberComponent } from './components/toolber/toolber.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
-  declarations: [AppComponent, TopComponent, ToolberComponent],
+  declarations: [AppComponent, TopComponent, ToolberComponent, ButtonComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

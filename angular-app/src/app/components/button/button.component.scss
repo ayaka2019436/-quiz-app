@@ -1,0 +1,25 @@
+@use "src/assets/color";
+
+.button {
+  border-radius: 100vh; /* 丸い形状にするためにborder-radiusを調整 */
+  width: 70vw; /* 幅を定 */
+  min-height: 60px; /* 高さを設定 */
+
+  font-size: 20px;
+  padding: 20px 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // text-decoration: none;
+}
+
+.primary {
+  background-color: color.$primary;
+  color: color.$black;
+}
+
+.secondary {
+  background-color: color.$secondary;
+  color: color.$black;
+}
