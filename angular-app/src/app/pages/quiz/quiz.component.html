@@ -1,1 +1,13 @@
-<p>quiz works!</p>
+<app-toolbar></app-toolbar>
+<div class="quiz-box">
+  <div class="quiz-count">
+    <b>第{{ Questionscount }}問</b>残り{{ 20 - Questionscount }}問
+  </div>
+  <div class="quiz-count">{{ quizQuestion }}</div>
+  <div>
+    <app-button [text]="'選択肢１'" class="button-container"></app-button>
+    <app-button [text]="'選択肢２'" class="button-container"></app-button>
+    <app-button [text]="'選択肢３'" class="button-container"></app-button>
+    <app-button [text]="'選択肢４'" class="button-container"></app-button>
+  </div>
+</div>

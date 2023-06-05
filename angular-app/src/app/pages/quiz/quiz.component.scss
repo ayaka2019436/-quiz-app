@@ -1,0 +1,19 @@
+.quiz-box{
+  border: 2px solid gray ;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 15px;
+}
+.quiz-count{
+  font-size: 15px;
+  display: flex;
+  //flex-direction: column;
+  justify-content:center;
+}
+.button-container{
+  margin: 10px;
+  height: 10px;
+  width: 50vw;
+  padding: 5px;
+
+}
