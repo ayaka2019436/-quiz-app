@@ -25,3 +25,18 @@
   background-color: color.$secondary;
   color: color.$black;
 }
+.primary_click{
+  background-color: color.$primary_click;
+  color: color.$black;
+}
+.secondary_click{
+  background-color: color.$secondary_click;
+  color: color.$black;
+}
+
+
+.button:active {
+  /* ボタンが押された時のスタイルを指定 */
+  transform: scale(0.9); /* サイズを縮小 */
+  opacity: 0.8; /* 透明度を下げる */
+}

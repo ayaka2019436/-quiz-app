@@ -8,4 +8,15 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() text: string = '';
   @Input() color: string = 'primary';
+
+  handleButtonClick() {
+    console.log('ボタンがクリックされました');
+    // ここに追加の処理を書く
+    if (this.color === 'primary' || this.color === 'primary_click ') {
+      //ボタンの元の色によって選択後の色を分岐させる
+      this.color = 'primary_click ';
+    } else {
+      this.color = 'secondary_click';
+    }
+  }
 }
