@@ -6,25 +6,25 @@
   <div>
     <app-button
       [text]="'選択肢１'"
-      class="button-container"
+      class="quiz-button-container"
       (disabled)="(isOptionSelected[0])"
       (click)="handleOptionClick(0)"
     ></app-button>
     <app-button
       [text]="'選択肢２'"
-      class="button-container"
+      class="quiz-button-container"
       (disabled)="(isOptionSelected[1])"
       (click)="handleOptionClick(1)"
     ></app-button>
     <app-button
       [text]="'選択肢３'"
-      class="button-container"
+      class="quiz-button-container"
       (disabled)="(isOptionSelected[2])"
       (click)="handleOptionClick(2)"
     ></app-button>
     <app-button
       [text]="'選択肢４'"
-      class="button-container"
+      class="quiz-button-container"
       (disabled)="(isOptionSelected[3])"
       (click)="handleOptionClick(3)"
     ></app-button>
@@ -45,7 +45,7 @@
   <div class="quiz-box">
     <div>{{ description }}</div>
   </div>
-  <app-button [text]="'次に進む'"></app-button>
+  <app-button [text]="'次に進む'" class="next-button"></app-button>
 </div>
 
 <!-- <div class="question">

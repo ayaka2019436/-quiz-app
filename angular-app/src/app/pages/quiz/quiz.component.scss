@@ -19,12 +19,22 @@
     flex-direction: column;
     align-items: center;
 }
-.button-container{
-  margin: 10px;
-  height: 10px;
-  width: 50vw;
-  padding: 5px;
+.quiz-button-container{
+  min-height: 10px;
+  font-size: 15px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+.next-button{
+  min-height: 20px;
+  font-size: 15px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .circle-cross {
   font-size: 20px;

@@ -1,8 +1,8 @@
 .main-container {
   margin: 0px;
-  background-image: url("../../../assets/nekobackground.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-image: url("../../../assets/nekobackground.jpeg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
   height: calc(100% - 60px);
 
   display: flex;
@@ -22,4 +22,7 @@
     align-items: center;
     justify-content: space-evenly;
   }
+}
+.button-detail{
+  height: 70px;
 }
