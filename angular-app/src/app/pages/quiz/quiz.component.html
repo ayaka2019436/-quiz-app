@@ -1,4 +1,3 @@
-<app-toolbar></app-toolbar>
 <div class="quiz-box">
   <div class="quiz-count">
     <b>第{{ Questionscount }}問</b>残り{{ 20 - Questionscount }}問
@@ -44,7 +43,7 @@
   <div class="circle-cross" #scrollTarget>{{ circle_cross[0] }}</div>
   <div class="answer">{{ answer }}</div>
   <div class="quiz-box">
-    <div class="description">{{ description }}</div>
+    <div>{{ description }}</div>
   </div>
   <app-button [text]="'次に進む'"></app-button>
 </div>
