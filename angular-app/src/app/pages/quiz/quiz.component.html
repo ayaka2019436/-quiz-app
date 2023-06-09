@@ -4,8 +4,6 @@
     <div class="quiz-count">残り{{ 20 - Questionscount }}問</div>
   </div>
 
-  >
-
   <div class="quiz-body">
     <div class="question">{{ quizQuestion }}</div>
     <div class="quiz-button-container">
@@ -18,47 +16,22 @@
       <app-sub-button [text]="'選択肢3'"></app-sub-button>
       <app-sub-button [text]="'選択肢4'"></app-sub-button>
 
-      <app-button
-        [text]="'選択肢１aaaaaaaaaaaaaaaaaaaaaaaaaaaa'"
-        class="quiz-button-container"
-        (disabled)="(isOptionSelected[0])"
-        (click)="handleOptionClick(0)"
-      ></app-button>
-      <app-button
-        [text]="'選択肢２'"
-        class="quiz-button-container"
-        (disabled)="(isOptionSelected[1])"
-        (click)="handleOptionClick(1)"
-      ></app-button>
-      <app-button
-        [text]="'選択肢３'"
-        class="quiz-button-container"
-        (disabled)="(isOptionSelected[2])"
-        (click)="handleOptionClick(2)"
-      ></app-button>
-      <app-button
-        [text]="'選択肢４'"
-        class="quiz-button-container"
-        (disabled)="(isOptionSelected[3])"
-        (click)="handleOptionClick(3)"
-      ></app-button>
+      <div
+        class="question"
+        *ngIf="
+          isOptionSelected[0] ||
+          isOptionSelected[1] ||
+          isOptionSelected[2] ||
+          isOptionSelected[3]
+        "
+      >
+        <div class="circle-cross" #scrollTarget>{{ circle_cross[0] }}</div>
+        <div class="answer">{{ answer }}</div>
+        <div class="quiz-box">
+          <div>{{ description }}</div>
+        </div>
+        <app-button [text]="'次に進む'" class="next-button"></app-button>
+      </div>
     </div>
   </div>
-</div>
-
-<div
-  class="question"
-  *ngIf="
-    isOptionSelected[0] ||
-    isOptionSelected[1] ||
-    isOptionSelected[2] ||
-    isOptionSelected[3]
-  "
->
-  <div class="circle-cross" #scrollTarget>{{ circle_cross[0] }}</div>
-  <div class="answer">{{ answer }}</div>
-  <div class="quiz-box">
-    <div>{{ description }}</div>
-  </div>
-  <app-button [text]="'次に進む'" class="next-button"></app-button>
 </div>
