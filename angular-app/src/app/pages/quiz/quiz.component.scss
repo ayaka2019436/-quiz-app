@@ -4,14 +4,21 @@
   padding: 10px;
   margin: 15px;
 }
-.quiz-count{
+
+.quiz-header{
   font-size: 15px;
   display: flex;
-  //flex-direction: column;
-  //justify-content:center;
   justify-content: space-between;
   padding-bottom: 10px;
+
+  .quiz-count{
+    font-size: 15px;
+  }
 }
+
+.quiz-body {
+  padding: 20px;
+
 .question{
       font-size: 15px;
     display: flex;
@@ -19,23 +26,16 @@
     flex-direction: column;
     align-items: center;
 }
-.quiz-button-container{
-  min-height: 10px;
-  font-size: 15px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-}
-.next-button{
-  min-height: 20px;
-  font-size: 15px;
-  padding: 10px 20px;
+.quiz-button-container{
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-gap: 30px;
+  flex-direction: column;
 }
+}
+
 .circle-cross {
   font-size: 20px;
 }

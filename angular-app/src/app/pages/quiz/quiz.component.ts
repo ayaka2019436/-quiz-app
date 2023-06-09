@@ -7,10 +7,11 @@ import { Component } from '@angular/core';
 })
 export class QuizComponent {
   Questionscount: number = 1;
-  quizQuestion: string = 'クイズの問題を表示させる';
+  quizQuestion: string =
+    '猫精神医学によると猫を飼っている人は〇〇による死亡リスクが低減する。○に入るものはどれか？';
   isOptionSelected: boolean[] = [false, false, false, false];
-  //circle_cross:boolean=false;
-  circle_cross: string[] = ['◯', '✖︎'];
+  circle_cross: string = '';
+  answer_num: number = 2;
   answer: string = 'クイズの回答';
   description: string = 'クイズの解説';
 
@@ -22,6 +23,11 @@ export class QuizComponent {
     } else {
       console.log('選択肢', optionIndex + 1, 'が選択されました');
       this.isOptionSelected[optionIndex] = true;
+      if (this.answer_num === optionIndex + 1) {
+        this.circle_cross = '◯';
+      } else {
+        this.circle_cross = '✖︎';
+      }
     }
   }
 }

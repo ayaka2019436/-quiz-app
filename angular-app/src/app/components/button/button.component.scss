@@ -2,16 +2,16 @@
 
 .button {
   border-radius: 100vh;
-    width: 70vw;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 70vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
 
-
+  .button-text{
+    word-wrap: break-word;
+  }
 }
-
-
 
 .primary {
   background-color: color.$primary;
@@ -22,15 +22,16 @@
   background-color: color.$secondary;
   color: color.$black;
 }
+
 .primary_click{
   background-color: color.$primary_click;
   color: color.$black;
 }
+
 .secondary_click{
   background-color: color.$secondary_click;
   color: color.$black;
 }
-
 
 .button:active {
   /* ボタンが押された時のスタイルを指定 */
