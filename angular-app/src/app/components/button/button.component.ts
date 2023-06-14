@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { QuizComponent } from 'src/app/pages/quiz/quiz.component';
 
 @Component({
   selector: 'app-button',
@@ -8,6 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ButtonComponent implements OnInit {
   @Input() text: string = '';
   @Input() color: string = 'primary';
+  @Input() selectedOptionIndex: number = -1;
 
   handleButtonClick() {
     console.log('ボタンがクリックされました');

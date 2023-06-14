@@ -9,18 +9,17 @@ export class QuizComponent {
   Questionscount: number = 1;
   quizQuestion: string =
     '猫精神医学によると猫を飼っている人は〇〇による死亡リスクが低減する。○に入るものはどれか？';
-  isOptionSelected: boolean[] = [false, false, false, false];
+  //isOptionSelected: boolean[] = [false, false, false, false];
   circle_cross: string = '';
   answer_num: number = 2;
   answer: string = 'クイズの回答';
   description: string = 'クイズの解説';
   selectedOptionIndex: number = -1;
-  your_answer: string = '';
 
   handleOptionClick(optionIndex: number) {
     // ボタンがクリックされた時の処理を実装
     //boolean型に選択済みであればtrueを代入し、disabledで選択を無効化する
-    if (this.selectedOptionIndex !== -1) {
+    if (this.selectedOptionIndex != -1) {
       console.log('既に選択済みの選択肢があります。');
       return;
     } else {
