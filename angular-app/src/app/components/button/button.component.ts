@@ -11,10 +11,12 @@ export class ButtonComponent implements OnInit {
   @Input() color: string = 'primary';
   @Input() selectedOptionIndex: number = -1;
 
-  handleButtonClick() {
+  handleButtonClick(selectedOptionIndex: number) {
     console.log('ボタンがクリックされました');
     // ここに追加の処理を書く
-    if (this.color === 'primary' || this.color === 'primary_click ') {
+    if (selectedOptionIndex != -1) {
+      return;
+    } else if (this.color === 'primary' || this.color === 'primary_click ') {
       //ボタンの元の色によって選択後の色を分岐させる
       this.color = 'primary_click ';
     } else {
