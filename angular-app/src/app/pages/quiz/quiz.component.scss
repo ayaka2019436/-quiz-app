@@ -1,0 +1,52 @@
+.quiz-box{
+  border: 2px solid gray ;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 15px;
+}
+
+.quiz-header{
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+
+  .quiz-count{
+    font-size: 15px;
+  }
+}
+
+.quiz-body {
+  padding: 20px;
+}
+
+.question {
+  font-size: 15px;
+  display: flex;
+  padding-bottom: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 追加 */
+  text-align: center; /* 追加 */
+}
+
+
+.quiz-button-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 30px;
+  flex-direction: column;
+}
+
+
+.circle-cross {
+  font-size: 20px;
+}
+
+.answer {
+  font-weight: bold;
+}
+
+
+
