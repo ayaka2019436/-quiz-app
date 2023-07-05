@@ -13,6 +13,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { QuizStartComponent } from './pages/quiz-start/quiz-start.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { SubButtonComponent } from './components/sub-button/sub-button.component';
+import { QuizResultComponent } from './pages/quiz-result/quiz-result.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SubButtonComponent } from './components/sub-button/sub-button.component
     QuizStartComponent,
     QuizComponent,
     SubButtonComponent,
+    QuizResultComponent,
   ],
   imports: [
     BrowserModule,

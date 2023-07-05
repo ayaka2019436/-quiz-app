@@ -1,0 +1,16 @@
+<p class="text-center"><b>結果</b></p>
+<div class="item-center">
+  <app-button
+    [text]="'結果を見る'"
+    class="next-button"
+    (click)="handleButtonClick(selectedOptionIndex, correct_answer_count)"
+  ></app-button>
+</div>
+<div class="result-box" *ngIf="selectedOptionIndex == 1">
+  <div class="result-header">
+    <p>正解数 {{ correct_answer_count }}問</p>
+    <p>正解率 {{ correct_answer_rate }}%</p>
+  </div>
+
+  <p class="text-center">{{ message }}</p>
+</div>
