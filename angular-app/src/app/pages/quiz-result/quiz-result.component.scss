@@ -1,0 +1,71 @@
+.result-header{
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.item-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.result-box{
+  border: 2px solid gray ;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 15px;
+  background-color: #fff;
+}
+
+// Twitterのアイコンのスタイル
+// .follow-me-wrapper {
+//   text-align: right;
+// }
+
+// .follow-me {
+//   list-style: none;
+//   margin-right:30px ;
+//   padding: 0;
+// }
+
+// .follow-me li {
+//   display: inline-block;
+//   margin: 0 8px 8px 0;
+//   padding: 0;
+// }
+// .follow-me li a::before {
+//   -webkit-border-radius: 2px;
+//   border-radius: 2px;
+//   color: #fff;
+//   display: inline-block;
+//   font-family: FontAwesome;
+//   font-size: 16px;
+//   height: 44px; /* Button height */
+//   line-height: 44px; /* Button height */
+//   -webkit-transition: all .3s ease;
+//   transition: all .3s ease;
+//   text-align: center;
+//   width: 44px; /* Button width */
+//   margin-right: 0;
+// }
+// .follow-me li a:hover::before {
+//   opacity: 0.7;
+//   display: flex;
+//   justify-content: center;
+//   align-items: right;
+
+// }
+
+// .follow-me li a[href*="twitter.com"]::before        { background-color: #55acee; content: "\f099"; }
+
+.center{
+  width: fit-content;
+  margin: 0 auto 0 auto;
+}

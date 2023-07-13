@@ -39,5 +39,9 @@
   <div class="quiz-box">
     <div>{{ description }}</div>
   </div>
-  <app-button [text]="'次に進む'" class="next-button"></app-button>
+  <app-button
+    [text]="'次に進む'"
+    routerLink="/quiz-result"
+    class="next-button"
+  ></app-button>
 </div>

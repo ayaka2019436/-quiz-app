@@ -1,0 +1,61 @@
+<div class="item-center">
+  <app-button
+    [text]="'結果を見る'"
+    class="next-button"
+    (click)="handleButtonClick()"
+  ></app-button>
+</div>
+
+<div *ngIf="isVisibleResult">
+  <p class="text-center"><b>結果</b></p>
+  <div class="result-box">
+    <div class="result-header">
+      <p>正解数 {{ correctAnswerCount }}問</p>
+      <p>正解率 {{ correctAnswerRate }}%</p>
+    </div>
+
+    <div class="center">
+      <ngx-charts-polar-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [legend]="legend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [results]="multi"
+        (select)="onSelect($event)"
+      >
+      </ngx-charts-polar-chart>
+    </div>
+    <p class="text-center">{{ message }}</p>
+  </div>
+
+  <!-- <div class="follow-me-wrapper">
+    <ul class="follow-me">
+      <li><a href="https://twitter.com"></a></li>
+    </ul>
+  </div> -->
+
+  <!--Twitterのアイコン作るところ、、
+    <a
+  href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+  class="twitter-share-button"
+  data-show-count="false"
+  >Tweet</a
+>
+<script
+  async
+  src="https://platform.twitter.com/widgets.js"
+  charset="utf-8"
+></script> -->
+  <div class="item-center">
+    <app-button
+      [text]="'トップに戻る'"
+      routerLink="/top"
+      class="next-button"
+    ></app-button>
+  </div>
+</div>

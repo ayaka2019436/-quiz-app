@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { QuizStartComponent } from './pages/quiz-start/quiz-start.component';
 import { QuizComponent } from './pages/quiz/quiz.component';
 import { SubButtonComponent } from './components/sub-button/sub-button.component';
+import { QuizResultComponent } from './pages/quiz-result/quiz-result.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { SubButtonComponent } from './components/sub-button/sub-button.component
     QuizStartComponent,
     QuizComponent,
     SubButtonComponent,
+    QuizResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { SubButtonComponent } from './components/sub-button/sub-button.component
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
