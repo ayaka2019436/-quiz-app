@@ -2,15 +2,16 @@
   <app-button
     [text]="'結果を見る'"
     class="next-button"
-    (click)="handleButtonClick(selectedOptionIndex, correct_answer_count)"
+    (click)="handleButtonClick()"
   ></app-button>
 </div>
-<div *ngIf="selectedOptionIndex == 1">
+
+<div *ngIf="isVisibleResult">
   <p class="text-center"><b>結果</b></p>
   <div class="result-box">
     <div class="result-header">
-      <p>正解数 {{ correct_answer_count }}問</p>
-      <p>正解率 {{ correct_answer_rate }}%</p>
+      <p>正解数 {{ correctAnswerCount }}問</p>
+      <p>正解率 {{ correctAnswerRate }}%</p>
     </div>
 
     <div class="center">
@@ -55,7 +56,6 @@
       [text]="'トップに戻る'"
       routerLink="/top"
       class="next-button"
-      (click)="handleButtonClick(selectedOptionIndex, correct_answer_count)"
     ></app-button>
   </div>
 </div>

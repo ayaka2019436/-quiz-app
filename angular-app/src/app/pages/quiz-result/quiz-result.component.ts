@@ -7,9 +7,9 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
   styleUrls: ['./quiz-result.component.scss'],
 })
 export class QuizResultComponent {
-  selectedOptionIndex: number = -1;
-  correct_answer_count: number = 0;
-  correct_answer_rate: number = 0;
+  isVisibleResult: boolean = false;
+  correctAnswerCount: number = 0;
+  correctAnswerRate: number = 0;
   message: string[] = [
     'もう少しいけるんちゃうか',
     'なかなかやるやんけ',
@@ -92,12 +92,11 @@ export class QuizResultComponent {
     console.log(event);
   }
 
-  handleButtonClick(selectedOptionIndex: number, correct_answer_count: number) {
-    console.log('ボタンがクリックされました');
-    this.selectedOptionIndex = 1;
-    if (correct_answer_count >= 15) {
+  handleButtonClick() {
+    this.isVisibleResult = true;
+    if (this.correctAnswerCount >= 15) {
       this.message = [this.message[2]];
-    } else if (correct_answer_count >= 10) {
+    } else if (this.correctAnswerCount >= 10) {
       this.message = [this.message[1]];
     } else {
       this.message = [this.message[0]];
