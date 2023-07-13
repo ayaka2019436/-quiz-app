@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +34,7 @@ import { QuizResultComponent } from './pages/quiz-result/quiz-result.component';
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
