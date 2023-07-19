@@ -57,10 +57,11 @@ export class QuizComponent {
         quizzes.data[this.questionsCount - 1].attributes.explanation;
       this.answer =
         quizzes.data[this.questionsCount - 1].attributes.choices[
-          this.answer_num
+          this.answer_num - 1
         ].text;
       if (
-        this.answer_num === quizzes.data[0].attributes.choices[optionIndex].id
+        this.answer_num ===
+        quizzes.data[this.questionsCount - 1].attributes.choices[optionIndex].id
       ) {
         this.circle_cross = '◯';
       } else {
