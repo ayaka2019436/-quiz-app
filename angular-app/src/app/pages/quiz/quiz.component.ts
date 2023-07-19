@@ -20,8 +20,9 @@ export class QuizComponent {
   constructor(private apiSvc: ApiService) {
     const query: any = { populate: ['choices'] };
     this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
-      console.log(quizzes.attributes[0]);
-      this.quizQuestion = quizzes;
+      // 確認用後で消しときます
+      console.log(quizzes.data[0].attributes.question);
+      this.quizQuestion = quizzes.data[0].attributes.question;
     });
   }
 
