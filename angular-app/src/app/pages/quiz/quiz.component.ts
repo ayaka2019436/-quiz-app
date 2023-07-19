@@ -16,13 +16,19 @@ export class QuizComponent {
   answer: string = 'クイズの回答';
   description: string = 'クイズの解説';
   selectedOptionIndex: number = -1;
+  quizChoice: string[] = [' ', ' ', ' ', ' '];
 
   constructor(private apiSvc: ApiService) {
     const query: any = { populate: ['choices'] };
     this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
       // 確認用後で消しときます
-      console.log(quizzes.data[0].attributes.question);
+      console.log(quizzes);
+      // for (let i in quizzes.length) {
       this.quizQuestion = quizzes.data[0].attributes.question;
+      for (let index in this.quizChoice) {
+        this.quizChoice[index] = quizzes.data[0].attributes.choices[index].text;
+      }
+      //}
     });
   }
 
