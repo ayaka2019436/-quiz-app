@@ -1,4 +1,6 @@
+import { query } from '@angular/animations';
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-quiz',
@@ -7,14 +9,21 @@ import { Component } from '@angular/core';
 })
 export class QuizComponent {
   Questionscount: number = 1;
-  quizQuestion: string =
-    '猫精神医学によると猫を飼っている人は〇〇による死亡リスクが低減する。○に入るものはどれか？';
+  quizQuestion: string = '';
   //isOptionSelected: boolean[] = [false, false, false, false];
   circle_cross: string = '';
   answer_num: number = 2;
   answer: string = 'クイズの回答';
   description: string = 'クイズの解説';
   selectedOptionIndex: number = -1;
+
+  constructor(private apiSvc: ApiService) {
+    const query: any = { populate: ['choices'] };
+    this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
+      console.log(quizzes.attributes[0]);
+      this.quizQuestion = quizzes;
+    });
+  }
 
   handleOptionClick(optionIndex: number) {
     // ボタンがクリックされた時の処理を実装
