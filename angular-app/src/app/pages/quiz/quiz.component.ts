@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-quiz',
@@ -6,31 +7,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./quiz.component.scss'],
 })
 export class QuizComponent {
-  Questionscount: number = 1;
-  quizQuestion: string =
-    '猫精神医学によると猫を飼っている人は〇〇による死亡リスクが低減する。○に入るものはどれか？';
-  //isOptionSelected: boolean[] = [false, false, false, false];
-  circle_cross: string = '';
-  answer_num: number = 2;
-  answer: string = 'クイズの回答';
-  description: string = 'クイズの解説';
-  selectedOptionIndex: number = -1;
+  questionsCount: number = 1;
+  // 出題するクイズのデータが入る
+  quiz: any;
 
-  handleOptionClick(optionIndex: number) {
+  // 選択肢が選択されたかどうか
+  selectedAnswer = false;
+
+  // 選択した選択肢が正解かどうか
+  isCorrect = false;
+
+  constructor(private apiSvc: ApiService) {
+    const query: any = { populate: ['choices'] };
+    this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
+      this.quiz = quizzes.data[this.questionsCount - 1].attributes;
+    });
+  }
+
+  public clickAnswer(choice: any) {
     // ボタンがクリックされた時の処理を実装
     //boolean型に選択済みであればtrueを代入し、disabledで選択を無効化する
-    if (this.selectedOptionIndex != -1) {
+    if (this.selectedAnswer) {
       console.log('既に選択済みの選択肢があります。');
       return;
-    } else {
-      console.log('選択肢', optionIndex + 1, 'が選択されました');
-      this.selectedOptionIndex = 1;
     }
 
-    if (this.answer_num === optionIndex + 1) {
-      this.circle_cross = '◯';
-    } else {
-      this.circle_cross = '✖︎';
-    }
+    console.log('選択肢が選択されました', choice);
+    this.selectedAnswer = true;
+
+    this.isCorrect = choice.is_correct;
+  }
+
+  public getCorrectAnswer(): string {
+    const correctAnswer = this.quiz.choices.find(
+      (choice: any) => choice.is_correct
+    );
+    return correctAnswer?.text;
   }
 }
