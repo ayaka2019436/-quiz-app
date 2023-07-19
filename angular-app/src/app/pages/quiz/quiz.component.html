@@ -5,37 +5,22 @@
   </div>
 
   <div class="quiz-body">
-    <div class="question">{{ quizQuestion }}</div>
+    <div class="question">{{ quiz?.question }}</div>
     <div class="quiz-button-container">
       <app-sub-button
-        [text]="quizChoice[0]"
-        (disabled)="(selectedOptionIndex !== -1)"
-        (click)="handleOptionClick(0)"
-      ></app-sub-button>
-      <app-sub-button
-        [text]="quizChoice[1]"
-        (disabled)="(selectedOptionIndex !== -1)"
-        (click)="handleOptionClick(1)"
-      ></app-sub-button>
-      <app-sub-button
-        [text]="quizChoice[2]"
-        (disabled)="(selectedOptionIndex !== -1)"
-        (click)="handleOptionClick(2)"
-      ></app-sub-button>
-      <app-sub-button
-        [text]="quizChoice[2]"
-        (disabled)="(selectedOptionIndex !== -1)"
-        (click)="handleOptionClick(3)"
+        *ngFor="let choice of quiz?.choices"
+        [text]="choice.text"
+        (click)="clickAnswer(choice)"
       ></app-sub-button>
     </div>
   </div>
 </div>
 
-<div class="question" *ngIf="selectedOptionIndex == 1">
-  <div class="circle-cross" #scrollTarget>{{ circle_cross[0] }}</div>
-  <div class="answer">{{ answer }}</div>
+<div class="question" *ngIf="selectedAnswer">
+  <div class="circle-cross" #scrollTarget>{{ isCorrect ? "◯" : "✖︎" }}</div>
+  <div class="answer">{{ getCorrectAnswer() }}</div>
   <div class="quiz-box">
-    <div>{{ description }}</div>
+    <div>{{ quiz?.explanation }}</div>
   </div>
   <app-button
     [text]="'次に進む'"

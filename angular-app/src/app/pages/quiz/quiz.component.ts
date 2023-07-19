@@ -1,4 +1,3 @@
-import { query } from '@angular/animations';
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -9,64 +8,40 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class QuizComponent {
   questionsCount: number = 1;
-  quizQuestion: string = '';
-  //isOptionSelected: boolean[] = [false, false, false, false];
-  circle_cross: string = '';
-  answer_num: number = 0;
-  answer: string = 'クイズの回答';
-  description: string = 'クイズの解説';
-  selectedOptionIndex: number = -1;
-  quizChoice: string[] = [' ', ' ', ' ', ' '];
+  // 出題するクイズのデータが入る
+  quiz: any;
+
+  // 選択肢が選択されたかどうか
+  selectedAnswer = false;
+
+  // 選択した選択肢が正解かどうか
+  isCorrect = false;
 
   constructor(private apiSvc: ApiService) {
     const query: any = { populate: ['choices'] };
     this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
-      // 確認用後で消しときます
-      console.log(quizzes);
-      this.quizQuestion =
-        quizzes.data[this.questionsCount - 1].attributes.question;
-      for (let index in this.quizChoice) {
-        this.quizChoice[index] =
-          quizzes.data[this.questionsCount - 1].attributes.choices[index].text;
-        if (
-          true ===
-          quizzes.data[this.questionsCount - 1].attributes.choices[index]
-            .is_correct
-        ) {
-          this.answer_num =
-            quizzes.data[this.questionsCount - 1].attributes.choices[index].id;
-        }
-      }
+      this.quiz = quizzes.data[this.questionsCount - 1].attributes;
     });
   }
 
-  handleOptionClick(optionIndex: number) {
+  public clickAnswer(choice: any) {
     // ボタンがクリックされた時の処理を実装
     //boolean型に選択済みであればtrueを代入し、disabledで選択を無効化する
-    if (this.selectedOptionIndex != -1) {
+    if (this.selectedAnswer) {
       console.log('既に選択済みの選択肢があります。');
       return;
-    } else {
-      console.log('選択肢', optionIndex + 1, 'が選択されました');
-      this.selectedOptionIndex = 1;
     }
 
-    const query: any = { populate: ['choices'] };
-    this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
-      this.description =
-        quizzes.data[this.questionsCount - 1].attributes.explanation;
-      this.answer =
-        quizzes.data[this.questionsCount - 1].attributes.choices[
-          this.answer_num - 1
-        ].text;
-      if (
-        this.answer_num ===
-        quizzes.data[this.questionsCount - 1].attributes.choices[optionIndex].id
-      ) {
-        this.circle_cross = '◯';
-      } else {
-        this.circle_cross = '✖︎';
-      }
-    });
+    console.log('選択肢が選択されました', choice);
+    this.selectedAnswer = true;
+
+    this.isCorrect = choice.is_correct;
+  }
+
+  public getCorrectAnswer(): string {
+    const correctAnswer = this.quiz.choices.find(
+      (choice: any) => choice.is_correct
+    );
+    return correctAnswer?.text;
   }
 }
