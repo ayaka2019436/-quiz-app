@@ -1,32 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss'],
 })
-export class QuizComponent {
+export class QuizComponent implements OnInit {
   questionsCount: number = 1;
-  // 出題するクイズのデータが入る
   quiz: any;
-
-  // 選択肢が選択されたかどうか
   selectedAnswer = false;
-
-  // 選択した選択肢が正解かどうか
   isCorrect = false;
 
-  constructor(private apiSvc: ApiService) {
-    const query: any = { populate: ['choices'] };
-    this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
-      this.quiz = quizzes.data[this.questionsCount - 1].attributes;
-    });
+  constructor(private apiSvc: ApiService, private quizService: QuizService) {}
+
+  ngOnInit() {
+    // クイズデータを取得する
+    this.quizService.getQuizzes();
+    // 最初の問題を表示するためにgetCurrentQuiz()を呼び出す
+    this.quiz = this.quizService.getCurrentQuiz();
   }
 
   public clickAnswer(choice: any) {
-    // ボタンがクリックされた時の処理を実装
-    //boolean型に選択済みであればtrueを代入し、disabledで選択を無効化する
     if (this.selectedAnswer) {
       console.log('既に選択済みの選択肢があります。');
       return;
@@ -34,7 +30,6 @@ export class QuizComponent {
 
     console.log('選択肢が選択されました', choice);
     this.selectedAnswer = true;
-
     this.isCorrect = choice.is_correct;
   }
 
