@@ -28,7 +28,8 @@ export class QuizService {
   // 出題画面で呼び出したい
   public getCurrentQuiz() {
     // 出題する問題1問を取得(返却)する
-    return this.quizzes[this.currentQuizCount];
+    return this.quizzes[this.currentQuizCount - 1].questions; // ここでエラー出る。プロパティを見つけられないエラー（’this.currrentCont-1’が×らしい）
+
     // return
   }
 }
