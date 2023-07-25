@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { QuizService } from 'src/app/services/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -13,7 +14,11 @@ export class QuizComponent implements OnInit {
   selectedAnswer = false;
   isCorrect = false;
 
-  constructor(private apiSvc: ApiService, private quizService: QuizService) {}
+  constructor(
+    private apiSvc: ApiService,
+    private quizService: QuizService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.questionsCount = this.quizService.returnQuizCount();
@@ -48,7 +53,13 @@ export class QuizComponent implements OnInit {
     );
     return correctAnswer?.text;
   }
-  public incrementQuizCount() {
+  public nextPage() {
     this.quizService.incrementQuizCount();
+    this.selectedAnswer = false;
+    if (this.questionsCount < 20) {
+      this.ngOnInit();
+    } else {
+      this.router.navigateByUrl('/quiz-result');
+    }
   }
 }

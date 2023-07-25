@@ -22,10 +22,16 @@
   <div class="quiz-box">
     <div>{{ quiz?.explanation }}</div>
   </div>
-  <app-button
-    [text]="'次に進む'"
-    (click)="incrementQuizCount()"
-    routerLink="/quiz-result"
-    class="next-button"
-  ></app-button>
+  <div>
+    <app-button
+      [text]="'次に進む'"
+      (click)="nextPage()"
+      class="next-button"
+    ></app-button>
+    <!-- <app-button
+      [text]="'結果を見る'"
+      (click)="nextQuiz()"
+      class="next-button"
+    ></app-button> -->
+  </div>
 </div>
