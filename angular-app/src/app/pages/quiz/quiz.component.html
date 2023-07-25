@@ -24,6 +24,7 @@
   </div>
   <app-button
     [text]="'次に進む'"
+    (click)="incrementQuizCount()"
     routerLink="/quiz-result"
     class="next-button"
   ></app-button>

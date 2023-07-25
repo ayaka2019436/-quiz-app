@@ -18,18 +18,28 @@ export class QuizService {
   public getQuizzes() {
     // 出題する問題を取得する(20問)
     // this.quizzes = ??
+
     const query: any = { populate: ['choices'] };
-    this.apiSvc.getQuizzes(query).subscribe((quizzes) => {
-      this.quizzes = quizzes.data;
-      console.log(quizzes); // 全データの受け渡しは出来てることを確認！！
+    const quiz = new Promise((resolve, reject) => {
+      this.apiSvc.getQuizzes(query).subscribe(
+        (quizzes) => {
+          this.quizzes = quizzes.data;
+
+          // 出題する問題1問を取得(返却)する
+          resolve(this.quizzes[this.currentQuizCount - 1].attributes);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
+
+    return quiz;
   }
-
-  // 出題画面で呼び出したい
-  public getCurrentQuiz() {
-    // 出題する問題1問を取得(返却)する
-    return this.quizzes[this.currentQuizCount - 1].questions; // ここでエラー出る。プロパティを見つけられないエラー（’this.currrentCont-1’が×らしい）
-
-    // return
+  public returnQuizCount() {
+    return this.currentQuizCount;
+  }
+  public incrementQuizCount() {
+    return this.currentQuizCount++;
   }
 }

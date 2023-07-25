@@ -16,10 +16,19 @@ export class QuizComponent implements OnInit {
   constructor(private apiSvc: ApiService, private quizService: QuizService) {}
 
   ngOnInit() {
+    this.questionsCount = this.quizService.returnQuizCount();
+    console.log('今の問題数' + this.questionsCount);
     // クイズデータを取得する
-    this.quizService.getQuizzes();
-    // 最初の問題を表示するためにgetCurrentQuiz()を呼び出す
-    this.quiz = this.quizService.getCurrentQuiz();
+    this.quizService
+      .getQuizzes()
+      .then((quiz) => {
+        this.quiz = quiz;
+        // 今出題されている問題のデータが入ってる
+        console.log('現在の問題', this.quiz);
+      })
+      .catch((error) => {
+        console.error('エラーが発生しました', error);
+      });
   }
 
   public clickAnswer(choice: any) {
@@ -38,5 +47,8 @@ export class QuizComponent implements OnInit {
       (choice: any) => choice.is_correct
     );
     return correctAnswer?.text;
+  }
+  public incrementQuizCount() {
+    this.quizService.incrementQuizCount();
   }
 }
