@@ -16,7 +16,7 @@ export class QuizComponent implements OnInit {
 
   constructor(
     private apiSvc: ApiService,
-    private quizService: QuizService,
+    public quizService: QuizService,
     private router: Router
   ) {}
 
@@ -24,16 +24,8 @@ export class QuizComponent implements OnInit {
     this.questionsCount = this.quizService.returnQuizCount();
     console.log('今の問題数' + this.questionsCount);
     // クイズデータを取得する
-    this.quizService
-      .getQuizzes()
-      .then((quiz) => {
-        this.quiz = quiz;
-        // 今出題されている問題のデータが入ってる
-        console.log('現在の問題', this.quiz);
-      })
-      .catch((error) => {
-        console.error('エラーが発生しました', error);
-      });
+    this.quiz = this.quizService.getCurrentQuiz();
+    console.log('現在の問題', this.quiz);
   }
 
   public clickAnswer(choice: any) {
@@ -56,7 +48,7 @@ export class QuizComponent implements OnInit {
   public nextPage() {
     this.quizService.incrementQuizCount();
     this.selectedAnswer = false;
-    if (this.questionsCount < 20) {
+    if (this.quizService.hasNextQuiz()) {
       this.ngOnInit();
     } else {
       this.router.navigateByUrl('/quiz-result');

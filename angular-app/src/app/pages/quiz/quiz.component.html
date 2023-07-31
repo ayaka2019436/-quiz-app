@@ -1,7 +1,9 @@
 <div class="quiz-box">
   <div class="quiz-header">
     <div class="quiz-count">第{{ questionsCount }}問</div>
-    <div class="quiz-count">残り{{ 20 - questionsCount }}問</div>
+    <div class="quiz-count">
+      残り{{ quizService.calcRemainingQuizCount() }}問
+    </div>
   </div>
 
   <div class="quiz-body">
