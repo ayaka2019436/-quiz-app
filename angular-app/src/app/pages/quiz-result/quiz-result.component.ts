@@ -100,17 +100,15 @@ export class QuizResultComponent {
   }
 
   calcCorrectAnswerRate() {
-    // console.log('クイズの正解数' + this.quiz.correctAnswerCount);
-    // console.log('クイズの総数' + this.quizService.quizzes.length);
-    // // this.correctAnswerRate = (5 / 2) * 100;
     this.correctAnswerRate =
       (this.correctAnswerCount / this.quizService.quizzes.length) * 100;
+    console.log('クイズの正解率' + this.correctAnswerRate);
     return this.correctAnswerRate;
-
-    // console.log('クイズの正解率' + this.correctAnswerRate);
   }
 
   handleButtonClick() {
+    this.calcCorrectAnswerRate();
+    // コメントの使用を問題数の何割などにして２０問じゃない時に備えた方がいい。
     this.isVisibleResult = true;
     if (this.correctAnswerCount >= 15) {
       this.message = [this.message[2]];
