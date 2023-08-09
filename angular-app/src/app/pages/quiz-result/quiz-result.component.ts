@@ -103,7 +103,6 @@ export class QuizResultComponent {
     this.correctAnswerRate =
       (this.correctAnswerCount / this.quizService.quizzes.length) * 100;
     console.log('クイズの正解率' + this.correctAnswerRate);
-    return this.correctAnswerRate;
   }
 
   handleButtonClick() {

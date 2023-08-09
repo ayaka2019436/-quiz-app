@@ -13,7 +13,6 @@ export class QuizComponent implements OnInit {
   quiz: any;
   selectedAnswer = false;
   isCorrect = false;
-  correctAnswerCount: number = 0;
   correctAnswer: string = '';
 
   constructor(
@@ -27,8 +26,6 @@ export class QuizComponent implements OnInit {
     console.log('今の問題数' + this.questionsCount);
     // クイズデータを取得する
     this.quiz = this.quizService.getCurrentQuiz();
-    // console.log('現在の問題', this.quiz);
-    // console.log('正解数', this.correctAnswerCount);
   }
 
   public clickAnswer(choice: any) {
@@ -41,19 +38,16 @@ export class QuizComponent implements OnInit {
     this.selectedAnswer = true;
     this.isCorrect = choice.is_correct;
     this.correctAnswer = this.getCorrectAnswer();
+    this.quizService.quizCorrectCountInit();
+    if (this.isCorrect) {
+      this.quizService.countCorrectAnswer();
+    }
   }
 
   public getCorrectAnswer(): string {
     const correctAnswer = this.quiz.choices.find(
       (choice: any) => choice.is_correct
     );
-    // console.log('this.isCorrect' + this.isCorrect);
-    // console.log('正解数' + this.correctAnswerCount);
-    if (this.isCorrect) {
-      // console.log('if 正解数' + this.correctAnswerCount);
-      this.quizService.countCorrectAnswer();
-    }
-    // console.log('正解数をカウントしています' + this.correctAnswerCount);
     return correctAnswer?.text;
   }
   public nextPage() {

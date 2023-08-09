@@ -57,4 +57,9 @@ export class QuizService {
     this.correctCount++;
     return;
   }
+  public quizCorrectCountInit() {
+    if (this.currentQuizCount == 1) {
+      this.correctCount = 0;
+    }
+  }
 }
