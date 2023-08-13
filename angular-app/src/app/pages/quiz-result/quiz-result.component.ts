@@ -109,9 +109,12 @@ export class QuizResultComponent {
     this.calcCorrectAnswerRate();
     // コメントの使用を問題数の何割などにして２０問じゃない時に備えた方がいい。
     this.isVisibleResult = true;
-    if (this.correctAnswerCount >= 15) {
+    if (this.correctAnswerCount >= this.quizService.quizzes.length * 0.8) {
       this.message = [this.message[2]];
-    } else if (this.correctAnswerCount >= 10) {
+    } else if (
+      this.correctAnswerCount >=
+      this.quizService.quizzes.length * 0.5
+    ) {
       this.message = [this.message[1]];
     } else {
       this.message = [this.message[0]];
