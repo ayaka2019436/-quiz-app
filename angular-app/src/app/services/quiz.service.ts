@@ -3,6 +3,13 @@ import { ApiService } from 'src/app/services/api.service';
 
 // 出題する問題数
 const QUIZ_LENGTH = 20;
+const type = [
+  '保護猫について',
+  '猫の基礎知識',
+  '豆知識',
+  '猫と人間の関係性',
+  '保護猫の福祉とケア',
+];
 
 @Injectable({
   providedIn: 'root',
@@ -21,15 +28,30 @@ export class QuizService {
     this.currentQuizCount = 1;
 
     // 出題する問題を取得する(20問)
-    const query: any = { populate: ['choices'] };
-    this.apiSvc.getQuizzes(query).subscribe(
-      (quizzes) => {
-        this.quizzes = quizzes.data;
-      },
-      (error) => {
-        console.error(error);
+    // const query: any = { populate: ['choices'] };
+    const qs = require('qs');
+    for (let j = 0; j < 20; j++) {
+      for (let i = 0; i < 4; i++) {
+        const query = qs.stringify({
+          filters: {
+            category: {
+              $eq: '保護猫について',
+            },
+            type: {
+              $eq: type[i],
+            },
+          },
+        });
+        this.apiSvc.getQuizzes(query).subscribe(
+          (quizzes) => {
+            this.quizzes = quizzes.data;
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       }
-    );
+    }
   }
 
   // 出題する問題1問を取得(返却)する
