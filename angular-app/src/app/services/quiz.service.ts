@@ -12,6 +12,7 @@ export class QuizService {
   quizzes: any;
   // 現在出題している問題数
   currentQuizCount = 1;
+  correctCount: number = 0;
 
   constructor(private apiSvc: ApiService) {}
 
@@ -50,5 +51,15 @@ export class QuizService {
 
   public hasNextQuiz(): boolean {
     return this.currentQuizCount - 1 < this.quizzes.length;
+  }
+
+  public countCorrectAnswer() {
+    this.correctCount++;
+    return;
+  }
+  public quizCorrectCountInit() {
+    if (this.currentQuizCount == 1) {
+      this.correctCount = 0;
+    }
   }
 }

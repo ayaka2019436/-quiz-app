@@ -13,6 +13,7 @@ export class QuizComponent implements OnInit {
   quiz: any;
   selectedAnswer = false;
   isCorrect = false;
+  correctAnswer: string = '';
 
   constructor(
     private apiSvc: ApiService,
@@ -25,7 +26,6 @@ export class QuizComponent implements OnInit {
     console.log('今の問題数' + this.questionsCount);
     // クイズデータを取得する
     this.quiz = this.quizService.getCurrentQuiz();
-    console.log('現在の問題', this.quiz);
   }
 
   public clickAnswer(choice: any) {
@@ -37,6 +37,11 @@ export class QuizComponent implements OnInit {
     console.log('選択肢が選択されました', choice);
     this.selectedAnswer = true;
     this.isCorrect = choice.is_correct;
+    this.correctAnswer = this.getCorrectAnswer();
+    this.quizService.quizCorrectCountInit();
+    if (this.isCorrect) {
+      this.quizService.countCorrectAnswer();
+    }
   }
 
   public getCorrectAnswer(): string {

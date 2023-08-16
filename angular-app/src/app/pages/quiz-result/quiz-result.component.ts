@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
+import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-quiz-result',
@@ -8,7 +9,7 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
 })
 export class QuizResultComponent {
   isVisibleResult: boolean = false;
-  correctAnswerCount: number = 0;
+  correctAnswerCount: number = 1;
   correctAnswerRate: number = 0;
   message: string[] = [
     'もう少しいけるんちゃうか',
@@ -88,11 +89,25 @@ export class QuizResultComponent {
     name: 'Customer Usage',
   };
 
+  constructor(private quizService: QuizService) {}
+
+  ngOnInit() {
+    this.correctAnswerCount = this.quizService.correctCount;
+  }
+
   onSelect(event: any) {
     console.log(event);
   }
 
+  calcCorrectAnswerRate() {
+    this.correctAnswerRate =
+      (this.correctAnswerCount / this.quizService.quizzes.length) * 100;
+    console.log('クイズの正解率' + this.correctAnswerRate);
+  }
+
   handleButtonClick() {
+    this.calcCorrectAnswerRate();
+    // コメントの使用を問題数の何割などにして２０問じゃない時に備えた方がいい。
     this.isVisibleResult = true;
     if (this.correctAnswerCount >= 15) {
       this.message = [this.message[2]];

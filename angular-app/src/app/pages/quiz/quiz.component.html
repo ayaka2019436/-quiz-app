@@ -20,7 +20,7 @@
 
 <div class="question" *ngIf="selectedAnswer">
   <div class="circle-cross" #scrollTarget>{{ isCorrect ? "◯" : "✖︎" }}</div>
-  <div class="answer">{{ getCorrectAnswer() }}</div>
+  <div class="answer">{{ correctAnswer }}</div>
   <div class="quiz-box">
     <div>{{ quiz?.explanation }}</div>
   </div>
