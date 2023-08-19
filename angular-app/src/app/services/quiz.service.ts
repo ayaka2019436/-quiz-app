@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import * as qs from 'qs';
 
 // 出題する問題数
 const QUIZ_LENGTH = 20;
@@ -29,31 +30,40 @@ export class QuizService {
 
     // 出題する問題を取得する(20問)
     // const query: any = { populate: ['choices'] };
-    const qs = require('qs');
-    for (let j = 0; j < 20; j++) {
-      for (let i = 0; i < 4; i++) {
-        const query = qs.stringify({
-          filters: {
-            category: {
-              $eq: '保護猫について',
-            },
-            type: {
-              $eq: type[i],
-            },
-          },
-        });
-        this.apiSvc.getQuizzes(query).subscribe(
-          (quizzes) => {
-            this.quizzes = quizzes.data;
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-      }
-    }
-  }
 
+    const query = {
+      filters: {
+        category: {
+          category: {
+            $eq: '保護猫について',
+          },
+        },
+      },
+      populate: '*',
+    };
+    this.apiSvc.getQuizzes(query).subscribe(
+      (quizzes) => {
+        this.quizzes = quizzes.data;
+        console.log(quizzes);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  // 各type４問ずつランダムに抜き出す
+  public selectQuizzes() {
+    const selectQuiz = {
+      filters: {
+        category: {
+          category: {
+            $eq: '保護猫について',
+          },
+        },
+      },
+      populate: '*',
+    };
+  }
   // 出題する問題1問を取得(返却)する
   public getCurrentQuiz() {
     return this.quizzes[this.currentQuizCount - 1].attributes;
