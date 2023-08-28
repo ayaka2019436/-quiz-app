@@ -119,5 +119,12 @@ export class QuizResultComponent {
     } else {
       this.message = [this.message[0]];
     }
+    // console.log(
+    //   'カテゴリ別のカウント' + this.quizService.typeCount[0],
+    //   this.quizService.typeCount[1],
+    //   this.quizService.typeCount[2],
+    //   this.quizService.typeCount[3],
+    //   this.quizService.typeCount[4]
+    // );
   }
 }

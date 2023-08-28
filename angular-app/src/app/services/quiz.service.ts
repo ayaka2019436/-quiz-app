@@ -101,4 +101,7 @@ export class QuizService {
     this.typeCount[typeNum - 1]++;
     // console.log(this.typeCount[typeNum - 1]);
   }
+  public quizTypeCountInit() {
+    this.typeCount = [0, 0, 0, 0, 0];
+  }
 }
