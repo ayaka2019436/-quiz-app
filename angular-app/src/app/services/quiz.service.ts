@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import * as _ from 'lodash';
 import * as qs from 'qs';
 
 // 出題する問題数
@@ -11,7 +12,6 @@ const type = [
   '猫と人間の関係性',
   '保護猫の福祉とケア',
 ];
-const quizSaveSpace: any = [QUIZ_LENGTH];
 
 @Injectable({
   providedIn: 'root',
@@ -47,8 +47,8 @@ export class QuizService {
     };
     this.apiSvc.getQuizzes(query).subscribe(
       (quizzes) => {
-        this.quizzes = quizzes.data;
-        console.log(quizzes);
+        // this.quizzes = quizzes.data;
+        this.quizzes = this.randomSelectQuizzes(quizzes.data);
       },
       (error) => {
         console.error(error);
@@ -56,31 +56,56 @@ export class QuizService {
     );
   }
   // 各type4問ずつランダムに抜き出す
-  public randomSelectQuizzes() {
+  public randomSelectQuizzes(quizzes: any) {
+    let incrementRandomRange: number = 0;
+    let typeCounts: any = {};
+
+    let shuffledQuizzes = _.shuffle(quizzes);
+    const _quizzes: any = [];
+    shuffledQuizzes.forEach((quiz) => {
+      const typeId = quiz.attributes.type.data.id;
+      if (typeCounts[typeId] < 4 || !typeCounts[typeId]) {
+        typeCounts[typeId] = typeCounts[typeId] ? typeCounts[typeId] + 1 : 1;
+        _quizzes.push(quiz);
+      }
+    });
+    console.log(_quizzes);
+    return _quizzes;
+
     // 保護猫についての問題を４問randomに取得する
-    for (let j = 0; j < 20; j++) {
-      let incrementRandomRange: number = 0;
-      for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+      for (let i = 0; i < 4; i++) {
         let num =
           Math.floor(
             Math.random() *
               (16 + incrementRandomRange + 1 - (7 + incrementRandomRange))
           ) +
-          (7 + incrementRandomRange);
-        const selectQuizType = {
-          filters: {
-            category: {
-              id: {
-                $eq: num,
-              },
-              type: {
-                $eq: type[i],
-              },
-            },
-          },
-        };
-        console.log('問題の取得' + selectQuizType);
-        quizSaveSpace[j] = selectQuizType;
+          (7 + incrementRandomRange); // randomを使うと同じidをとってくることが多々あるからそれをどうするか、、、、
+
+        // const filteredQuizzes = this.quizzes.filter(
+        //   (quiz: any) =>
+        //     this.quizzes.attributes.category.type === type[j] &&
+        //     this.quizzes.attributes.category.id === num
+        // );
+        // quizSaveSpace[j * 4 + i] = filteredQuizzes;
+
+        // quizzesに入っている問題データからフィルターをかけて持ってくる。
+        // const selectQuizType = {
+        //   filters: {
+        //     category: {
+        //       id: {
+        //         $eq: num,
+        //       },
+        //       type: {
+        //         $eq: type[j],
+        //       },
+        //     },
+        //   },
+        // };
+
+        // console.log(num);
+        // console.log('問題の取得' + selectQuizType);
+        // quizSaveSpace[j] = selectQuizType;
       }
       incrementRandomRange += 10;
     }
