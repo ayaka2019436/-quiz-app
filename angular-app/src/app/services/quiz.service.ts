@@ -30,7 +30,6 @@ export class QuizService {
     this.currentQuizCount = 1;
 
     // 出題する問題を取得する(20問)
-    // const query: any = { populate: ['choices'] };
 
     const query = {
       pagination: {
@@ -80,109 +79,11 @@ export class QuizService {
             Math.random() *
               (16 + incrementRandomRange + 1 - (7 + incrementRandomRange))
           ) +
-          (7 + incrementRandomRange); // randomを使うと同じidをとってくることが多々あるからそれをどうするか、、、、
-
-        // const filteredQuizzes = this.quizzes.filter(
-        //   (quiz: any) =>
-        //     this.quizzes.attributes.category.type === type[j] &&
-        //     this.quizzes.attributes.category.id === num
-        // );
-        // quizSaveSpace[j * 4 + i] = filteredQuizzes;
-
-        // quizzesに入っている問題データからフィルターをかけて持ってくる。
-        // const selectQuizType = {
-        //   filters: {
-        //     category: {
-        //       id: {
-        //         $eq: num,
-        //       },
-        //       type: {
-        //         $eq: type[j],
-        //       },
-        //     },
-        //   },
-        // };
-
-        // console.log(num);
-        // console.log('問題の取得' + selectQuizType);
-        // quizSaveSpace[j] = selectQuizType;
+          (7 + incrementRandomRange);
       }
       incrementRandomRange += 10;
     }
 
-    //   // 猫の基礎知識の問題を４問randomに取得する
-    //   for (let i = 4; i < 8; i++) {
-    //     let num = Math.floor(Math.random() * (26 + 1 - 17)) + 17;
-    //     const selectQuizType2 = {
-    //       filters: {
-    //         category: {
-    //           id: {
-    //             $eq: num,
-    //           },
-    //           type: {
-    //             $eq: '猫の基礎知識',
-    //           },
-    //         },
-    //       },
-    //       populate: '*',
-    //     };
-    //     quizSaveSpace[i] = selectQuizType2;
-    //   }
-    //   // 豆知識の問題を４問randomに取得する
-    //   for (let i = 8; i < 12; i++) {
-    //     let num = Math.floor(Math.random() * (36 + 1 - 27)) + 27;
-    //     const selectQuizType3 = {
-    //       filters: {
-    //         category: {
-    //           id: {
-    //             $eq: num,
-    //           },
-    //           type: {
-    //             $eq: '豆知識',
-    //           },
-    //         },
-    //       },
-    //       populate: '*',
-    //     };
-    //     quizSaveSpace[i] = selectQuizType3;
-    //   }
-    //   // 猫と人間の関係性の問題を４問randomに取得する
-    //   for (let i = 12; i < 16; i++) {
-    //     let num = Math.floor(Math.random() * (46 + 1 - 37)) + 37;
-    //     const selectQuizType4 = {
-    //       filters: {
-    //         category: {
-    //           id: {
-    //             $eq: num,
-    //           },
-    //           type: {
-    //             $eq: '猫と人間の関係性',
-    //           },
-    //         },
-    //       },
-    //       populate: '*',
-    //     };
-    //     quizSaveSpace[i] = selectQuizType4;
-    //   }
-    //   // 保護猫の福祉とケアの問題を４問randomに取得する
-    //   for (let i = 16; i < 20; i++) {
-    //     let num = Math.floor(Math.random() * (56 + 1 - 47)) + 47;
-    //     const selectQuizType5 = {
-    //       filters: {
-    //         category: {
-    //           id: {
-    //             $eq: num,
-    //           },
-    //           type: {
-    //             $eq: '保護猫の福祉とケア',
-    //           },
-    //         },
-    //       },
-    //       populate: '*',
-    //     };
-    //     quizSaveSpace[i] = selectQuizType5;
-    //   }
-    // }
     // 出題する問題1問を取得(返却)する
   }
   public getCurrentQuiz() {
