@@ -5,13 +5,6 @@ import * as qs from 'qs';
 
 // 出題する問題数
 const QUIZ_LENGTH = 20;
-const type = [
-  '保護猫について',
-  '猫の基礎知識',
-  '豆知識',
-  '猫と人間の関係性',
-  '保護猫の福祉とケア',
-];
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +15,8 @@ export class QuizService {
   // 現在出題している問題数
   currentQuizCount = 1;
   correctCount: number = 0;
+  countNumber: number = 0;
+  typeCount: number[] = [0, 0, 0, 0, 0];
 
   constructor(private apiSvc: ApiService) {}
 
@@ -71,19 +66,6 @@ export class QuizService {
     console.log(_quizzes);
     return _quizzes;
 
-    // 保護猫についての問題を４問randomに取得する
-    for (let j = 0; j < 5; j++) {
-      for (let i = 0; i < 4; i++) {
-        let num =
-          Math.floor(
-            Math.random() *
-              (16 + incrementRandomRange + 1 - (7 + incrementRandomRange))
-          ) +
-          (7 + incrementRandomRange);
-      }
-      incrementRandomRange += 10;
-    }
-
     // 出題する問題1問を取得(返却)する
   }
   public getCurrentQuiz() {
@@ -114,5 +96,9 @@ export class QuizService {
     if (this.currentQuizCount == 1) {
       this.correctCount = 0;
     }
+  }
+  public quizTypeCount(typeNum: number) {
+    this.typeCount[typeNum - 1]++;
+    console.log(this.typeCount[typeNum - 1]);
   }
 }

@@ -14,6 +14,7 @@ export class QuizComponent implements OnInit {
   selectedAnswer = false;
   isCorrect = false;
   correctAnswer: string = '';
+  typeNum: number = 0;
 
   constructor(
     private apiSvc: ApiService,
@@ -41,6 +42,8 @@ export class QuizComponent implements OnInit {
     this.quizService.quizCorrectCountInit();
     if (this.isCorrect) {
       this.quizService.countCorrectAnswer();
+      this.typeNum = this.quiz.type.data.id;
+      this.quizService.quizTypeCount(this.typeNum);
     }
   }
 
