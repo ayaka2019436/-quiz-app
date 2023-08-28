@@ -47,23 +47,23 @@ export class QuizResultComponent {
       series: [
         {
           name: '保護猫について',
-          value: 3,
+          value: this.quizService.typeCount[0],
         },
         {
           name: '猫の基礎知識',
-          value: 4,
+          value: this.quizService.typeCount[1],
         },
         {
           name: '豆知識',
-          value: 5,
+          value: this.quizService.typeCount[2],
         },
         {
           name: '猫と人間の関係性',
-          value: 2,
+          value: this.quizService.typeCount[3],
         },
         {
           name: '保護猫の福祉とケア',
-          value: 1,
+          value: this.quizService.typeCount[4],
         },
       ],
     },

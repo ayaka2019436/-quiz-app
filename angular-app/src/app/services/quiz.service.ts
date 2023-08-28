@@ -99,6 +99,6 @@ export class QuizService {
   }
   public quizTypeCount(typeNum: number) {
     this.typeCount[typeNum - 1]++;
-    console.log(this.typeCount[typeNum - 1]);
+    // console.log(this.typeCount[typeNum - 1]);
   }
 }
