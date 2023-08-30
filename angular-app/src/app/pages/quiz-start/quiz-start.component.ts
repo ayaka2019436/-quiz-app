@@ -9,5 +9,6 @@ import { QuizService } from 'src/app/services/quiz.service';
 export class QuizStartComponent {
   constructor(private quizService: QuizService) {
     quizService.getQuizzes();
+    quizService.quizTypeCountInit();
   }
 }

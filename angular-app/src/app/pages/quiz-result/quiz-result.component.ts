@@ -46,24 +46,25 @@ export class QuizResultComponent {
       name: 'user',
       series: [
         {
+          // DBの値から持ってくるといいよー
           name: '保護猫について',
-          value: 3,
+          value: this.quizService.typeCount[0],
         },
         {
           name: '猫の基礎知識',
-          value: 4,
+          value: this.quizService.typeCount[1],
         },
         {
           name: '豆知識',
-          value: 5,
+          value: this.quizService.typeCount[2],
         },
         {
           name: '猫と人間の関係性',
-          value: 2,
+          value: this.quizService.typeCount[3],
         },
         {
           name: '保護猫の福祉とケア',
-          value: 1,
+          value: this.quizService.typeCount[4],
         },
       ],
     },
@@ -107,14 +108,23 @@ export class QuizResultComponent {
 
   handleButtonClick() {
     this.calcCorrectAnswerRate();
-    // コメントの使用を問題数の何割などにして２０問じゃない時に備えた方がいい。
     this.isVisibleResult = true;
-    if (this.correctAnswerCount >= 15) {
+    if (this.correctAnswerCount >= this.quizService.quizzes.length * 0.8) {
       this.message = [this.message[2]];
-    } else if (this.correctAnswerCount >= 10) {
+    } else if (
+      this.correctAnswerCount >=
+      this.quizService.quizzes.length * 0.5
+    ) {
       this.message = [this.message[1]];
     } else {
       this.message = [this.message[0]];
     }
+    // console.log(
+    //   'カテゴリ別のカウント' + this.quizService.typeCount[0],
+    //   this.quizService.typeCount[1],
+    //   this.quizService.typeCount[2],
+    //   this.quizService.typeCount[3],
+    //   this.quizService.typeCount[4]
+    // );
   }
 }
