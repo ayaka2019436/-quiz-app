@@ -46,6 +46,7 @@ export class QuizResultComponent {
       name: 'user',
       series: [
         {
+          // DBの値から持ってくるといいよー
           name: '保護猫について',
           value: this.quizService.typeCount[0],
         },
@@ -107,7 +108,6 @@ export class QuizResultComponent {
 
   handleButtonClick() {
     this.calcCorrectAnswerRate();
-    // コメントの使用を問題数の何割などにして２０問じゃない時に備えた方がいい。
     this.isVisibleResult = true;
     if (this.correctAnswerCount >= this.quizService.quizzes.length * 0.8) {
       this.message = [this.message[2]];

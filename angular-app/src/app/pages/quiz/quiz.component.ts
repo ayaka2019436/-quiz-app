@@ -14,7 +14,6 @@ export class QuizComponent implements OnInit {
   selectedAnswer = false;
   isCorrect = false;
   correctAnswer: string = '';
-  typeNum: number = 0;
 
   constructor(
     private apiSvc: ApiService,
@@ -31,7 +30,7 @@ export class QuizComponent implements OnInit {
 
   public clickAnswer(choice: any) {
     if (this.selectedAnswer) {
-      console.log('既に選択済みの選択肢があります。');
+      // console.log('既に選択済みの選択肢があります。');
       return;
     }
 
@@ -42,8 +41,8 @@ export class QuizComponent implements OnInit {
     this.quizService.quizCorrectCountInit();
     if (this.isCorrect) {
       this.quizService.countCorrectAnswer();
-      this.typeNum = this.quiz.type.data.id;
-      this.quizService.quizTypeCount(this.typeNum);
+      const typeId: number = this.quiz.type.data.id;
+      this.quizService.quizTypeCount(typeId);
     }
   }
 
