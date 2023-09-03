@@ -69,6 +69,9 @@ export class QuizService {
     // 出題する問題1問を取得(返却)する
   }
   public getCurrentQuiz() {
+    this.quizzes[this.currentQuizCount - 1].attributes.choices = _.shuffle(
+      this.quizzes[this.currentQuizCount - 1].attributes.choices
+    );
     return this.quizzes[this.currentQuizCount - 1].attributes;
   }
 
