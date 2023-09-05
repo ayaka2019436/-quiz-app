@@ -26,6 +26,8 @@ export class QuizComponent implements OnInit {
     console.log('今の問題数' + this.questionsCount);
     // クイズデータを取得する
     this.quiz = this.quizService.getCurrentQuiz();
+
+    console.log('クイズの中身', this.quiz);
   }
 
   public clickAnswer(choice: any) {
@@ -33,7 +35,11 @@ export class QuizComponent implements OnInit {
       // console.log('既に選択済みの選択肢があります。');
       return;
     }
-
+    const element = document.getElementById('scroll');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    console.log('スクロール', element);
     console.log('選択肢が選択されました', choice);
     this.selectedAnswer = true;
     this.isCorrect = choice.is_correct;
