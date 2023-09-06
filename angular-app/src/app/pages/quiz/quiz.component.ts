@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Renderer2,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { Router } from '@angular/router';
@@ -20,15 +14,11 @@ export class QuizComponent implements OnInit {
   selectedAnswer = false;
   isCorrect = false;
   correctAnswer: string = '';
-  @ViewChild('nextButton', { static: false }) nextButton:
-    | ElementRef
-    | undefined;
 
   constructor(
     private apiSvc: ApiService,
     public quizService: QuizService,
-    private router: Router,
-    private el: ElementRef
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -45,7 +35,6 @@ export class QuizComponent implements OnInit {
       // console.log('既に選択済みの選択肢があります。');
       return;
     }
-    this.scrollEvent();
     console.log('選択肢が選択されました', choice);
     this.selectedAnswer = true;
     this.isCorrect = choice.is_correct;
@@ -56,6 +45,7 @@ export class QuizComponent implements OnInit {
       const typeId: number = this.quiz.type.data.id;
       this.quizService.quizTypeCount(typeId);
     }
+    this.scrollEvent();
   }
 
   public getCorrectAnswer(): string {
@@ -75,11 +65,6 @@ export class QuizComponent implements OnInit {
   }
   public scrollEvent() {
     console.log('スクロール');
-    if (this.questionsCount == 1) {
-      window.scrollTo(0, 300);
-    }
-    if (this.nextButton && this.nextButton.nativeElement) {
-      this.nextButton.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.scrollTo(0, document.body.scrollHeight);
   }
 }
