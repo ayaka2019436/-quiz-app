@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Renderer2,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import { Router } from '@angular/router';
@@ -14,11 +20,15 @@ export class QuizComponent implements OnInit {
   selectedAnswer = false;
   isCorrect = false;
   correctAnswer: string = '';
+  @ViewChild('nextButton', { static: false }) nextButton:
+    | ElementRef
+    | undefined;
 
   constructor(
     private apiSvc: ApiService,
     public quizService: QuizService,
-    private router: Router
+    private router: Router,
+    private el: ElementRef
   ) {}
 
   ngOnInit() {
@@ -35,11 +45,7 @@ export class QuizComponent implements OnInit {
       // console.log('既に選択済みの選択肢があります。');
       return;
     }
-    const element = document.getElementById('scroll');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    console.log('スクロール', element);
+    this.scrollEvent();
     console.log('選択肢が選択されました', choice);
     this.selectedAnswer = true;
     this.isCorrect = choice.is_correct;
@@ -65,6 +71,15 @@ export class QuizComponent implements OnInit {
       this.ngOnInit();
     } else {
       this.router.navigateByUrl('/quiz-result');
+    }
+  }
+  public scrollEvent() {
+    console.log('スクロール'); // ここには処理は通っている
+    // window.scrollTo(0, 300);
+    // const element = this.el.nativeElement;
+    // element.scrollIntoView({ behavior: 'smooth', block: 'end' }); // ページの一番下にスクロール
+    if (this.nextButton && this.nextButton.nativeElement) {
+      this.nextButton.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }
