@@ -74,10 +74,10 @@ export class QuizComponent implements OnInit {
     }
   }
   public scrollEvent() {
-    console.log('スクロール'); // ここには処理は通っている
-    // window.scrollTo(0, 300);
-    // const element = this.el.nativeElement;
-    // element.scrollIntoView({ behavior: 'smooth', block: 'end' }); // ページの一番下にスクロール
+    console.log('スクロール');
+    if (this.questionsCount == 1) {
+      window.scrollTo(0, 300);
+    }
     if (this.nextButton && this.nextButton.nativeElement) {
       this.nextButton.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }
